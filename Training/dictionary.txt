@@ -1,0 +1,17 @@
+кошка cat
+собака dog
+книга book
+яблоко apple
+солнце sun
+вода water
+цветок flover
+автомобиль car
+дом house
+cat кошка
+dog собака
+book кига
+apple яблоко
+sun солнце
+water вода
+car автомобиль
+house дом

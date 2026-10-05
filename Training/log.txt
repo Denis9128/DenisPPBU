@@ -1,0 +1,140 @@
+[09/17 10:38:40] Agent user cache is enabled
+[09/17 10:38:40] Initialized EventLog
+[09/17 10:38:40] ResourceGroupRegistry: reconciled 0 durable group(s) from store (0 transient member(s) dropped, 0 temporary group(s) purged)
+[09/17 10:38:40] Reverse index built: 0 indexed, 0 skipped (no SID), 0 degraded (no name), 0 SID mappings, 0 name mappings
+[09/17 10:38:40] Successfully mapped Agentic Platform virtual account groups.
+[09/17 10:38:40] Changing service start type to SERVICE_AUTO_START (2)
+[09/17 10:38:40] Ready.
+[09/17 10:38:40] Startup husk cleanup finished; no outstanding work remains.
+[09/17 10:39:31] Uninitialized EventLog
+[09/17 10:39:31] Changing service start type to SERVICE_DEMAND_START (3)
+[09/17 10:39:31] Service stopped; closing log.
+
+================================= (service start) ================================
+[09/17 10:39:37] Agent user cache is enabled
+[09/17 10:39:37] Initialized EventLog
+[09/17 10:39:37] ResourceGroupRegistry: reconciled 0 durable group(s) from store (0 transient member(s) dropped, 0 temporary group(s) purged)
+[09/17 10:39:37] Reverse index built: 0 indexed, 0 skipped (no SID), 0 degraded (no name), 0 SID mappings, 0 name mappings
+[09/17 10:39:37] Successfully mapped Agentic Platform virtual account groups.
+[09/17 10:39:37] Changing service start type to SERVICE_AUTO_START (2)
+[09/17 10:39:37] Ready.
+[09/17 10:39:37] Startup husk cleanup finished; no outstanding work remains.
+[09/17 10:40:08] Uninitialized EventLog
+[09/17 10:40:08] Changing service start type to SERVICE_DEMAND_START (3)
+[09/17 10:40:08] Service stopped; closing log.
+
+================================= (service start) ================================
+[09/17 11:09:31] Agent user cache is enabled
+[09/17 11:09:31] Initialized EventLog
+[09/17 11:09:31] ResourceGroupRegistry: reconciled 0 durable group(s) from store (0 transient member(s) dropped, 0 temporary group(s) purged)
+[09/17 11:09:31] Reverse index built: 0 indexed, 0 skipped (no SID), 0 degraded (no name), 0 SID mappings, 0 name mappings
+[09/17 11:09:31] Successfully mapped Agentic Platform virtual account groups.
+[09/17 11:09:31] Changing service start type to SERVICE_AUTO_START (2)
+[09/17 11:09:31] Ready.
+[09/17 11:09:31] Startup husk cleanup finished; no outstanding work remains.
+[09/17 11:10:16] Uninitialized EventLog
+[09/17 11:10:16] Changing service start type to SERVICE_DEMAND_START (3)
+[09/17 11:10:16] Service stopped; closing log.
+
+================================= (service start) ================================
+[09/17 18:25:43] Agent user cache is enabled
+[09/17 18:25:43] Initialized EventLog
+[09/17 18:25:43] ResourceGroupRegistry: reconciled 0 durable group(s) from store (0 transient member(s) dropped, 0 temporary group(s) purged)
+[09/17 18:25:43] Reverse index built: 0 indexed, 0 skipped (no SID), 0 degraded (no name), 0 SID mappings, 0 name mappings
+[09/17 18:25:43] Successfully mapped Agentic Platform virtual account groups.
+[09/17 18:25:43] Changing service start type to SERVICE_AUTO_START (2)
+[09/17 18:25:43] Ready.
+[09/17 18:25:43] Startup husk cleanup finished; no outstanding work remains.
+[09/17 18:26:13] Uninitialized EventLog
+[09/17 18:26:13] Changing service start type to SERVICE_DEMAND_START (3)
+[09/17 18:26:13] Service stopped; closing log.
+
+================================= (service start) ================================
+[09/17 20:51:51] Agent user cache is enabled
+[09/17 20:51:51] Initialized EventLog
+[09/17 20:51:51] ResourceGroupRegistry: reconciled 0 durable group(s) from store (0 transient member(s) dropped, 0 temporary group(s) purged)
+[09/17 20:51:51] Reverse index built: 0 indexed, 0 skipped (no SID), 0 degraded (no name), 0 SID mappings, 0 name mappings
+[09/17 20:51:51] Successfully mapped Agentic Platform virtual account groups.
+[09/17 20:51:51] Changing service start type to SERVICE_AUTO_START (2)
+[09/17 20:51:51] Ready.
+[09/17 20:51:51] Startup husk cleanup finished; no outstanding work remains.
+[09/17 20:52:21] Uninitialized EventLog
+[09/17 20:52:21] Changing service start type to SERVICE_DEMAND_START (3)
+[09/17 20:52:21] Service stopped; closing log.
+
+================================= (service start) ================================
+[09/18 09:58:00] Agent user cache is enabled
+[09/18 09:58:00] Initialized EventLog
+[09/18 09:58:00] ResourceGroupRegistry: reconciled 0 durable group(s) from store (0 transient member(s) dropped, 0 temporary group(s) purged)
+[09/18 09:58:00] Reverse index built: 0 indexed, 0 skipped (no SID), 0 degraded (no name), 0 SID mappings, 0 name mappings
+[09/18 09:58:00] Successfully mapped Agentic Platform virtual account groups.
+[09/18 09:58:00] Changing service start type to SERVICE_AUTO_START (2)
+[09/18 09:58:00] Ready.
+[09/18 09:58:00] Startup husk cleanup finished; no outstanding work remains.
+[09/18 09:58:38] Uninitialized EventLog
+[09/18 09:58:38] Changing service start type to SERVICE_DEMAND_START (3)
+[09/18 09:58:38] Service stopped; closing log.
+
+================================= (service start) ================================
+[09/22 09:41:01] Agent user cache is enabled
+[09/22 09:41:01] Initialized EventLog
+[09/22 09:41:01] ResourceGroupRegistry: reconciled 0 durable group(s) from store (0 transient member(s) dropped, 0 temporary group(s) purged)
+[09/22 09:41:01] Reverse index built: 0 indexed, 0 skipped (no SID), 0 degraded (no name), 0 SID mappings, 0 name mappings
+[09/22 09:41:01] Successfully mapped Agentic Platform virtual account groups.
+[09/22 09:41:01] Changing service start type to SERVICE_AUTO_START (2)
+[09/22 09:41:01] Ready.
+[09/22 09:41:01] Startup husk cleanup finished; no outstanding work remains.
+[09/22 09:41:31] Uninitialized EventLog
+[09/22 09:41:31] Changing service start type to SERVICE_DEMAND_START (3)
+[09/22 09:41:31] Service stopped; closing log.
+
+================================= (service start) ================================
+[09/22 09:42:10] Agent user cache is enabled
+[09/22 09:42:10] Initialized EventLog
+[09/22 09:42:10] ResourceGroupRegistry: reconciled 0 durable group(s) from store (0 transient member(s) dropped, 0 temporary group(s) purged)
+[09/22 09:42:10] Reverse index built: 0 indexed, 0 skipped (no SID), 0 degraded (no name), 0 SID mappings, 0 name mappings
+[09/22 09:42:10] Successfully mapped Agentic Platform virtual account groups.
+[09/22 09:42:10] Changing service start type to SERVICE_AUTO_START (2)
+[09/22 09:42:10] Ready.
+[09/22 09:42:10] Startup husk cleanup finished; no outstanding work remains.
+[09/22 09:42:40] Uninitialized EventLog
+[09/22 09:42:40] Changing service start type to SERVICE_DEMAND_START (3)
+[09/22 09:42:40] Service stopped; closing log.
+
+================================= (service start) ================================
+[09/22 22:02:33] Agent user cache is enabled
+[09/22 22:02:33] Initialized EventLog
+[09/22 22:02:33] ResourceGroupRegistry: reconciled 0 durable group(s) from store (0 transient member(s) dropped, 0 temporary group(s) purged)
+[09/22 22:02:33] Reverse index built: 0 indexed, 0 skipped (no SID), 0 degraded (no name), 0 SID mappings, 0 name mappings
+[09/22 22:02:33] Successfully mapped Agentic Platform virtual account groups.
+[09/22 22:02:33] Changing service start type to SERVICE_AUTO_START (2)
+[09/22 22:02:33] Ready.
+[09/22 22:02:33] Startup husk cleanup finished; no outstanding work remains.
+[09/22 22:03:03] Uninitialized EventLog
+[09/22 22:03:03] Changing service start type to SERVICE_DEMAND_START (3)
+[09/22 22:03:03] Service stopped; closing log.
+
+================================= (service start) ================================
+[09/23 10:28:26] Agent user cache is enabled
+[09/23 10:28:26] Initialized EventLog
+[09/23 10:28:26] ResourceGroupRegistry: reconciled 0 durable group(s) from store (0 transient member(s) dropped, 0 temporary group(s) purged)
+[09/23 10:28:26] Reverse index built: 0 indexed, 0 skipped (no SID), 0 degraded (no name), 0 SID mappings, 0 name mappings
+[09/23 10:28:26] Successfully mapped Agentic Platform virtual account groups.
+[09/23 10:28:26] Changing service start type to SERVICE_AUTO_START (2)
+[09/23 10:28:26] Ready.
+[09/23 10:28:26] Startup husk cleanup finished; no outstanding work remains.
+[09/23 10:28:56] Uninitialized EventLog
+[09/23 10:28:56] Changing service start type to SERVICE_DEMAND_START (3)
+[09/23 10:28:56] Service stopped; closing log.
+
+================================= (service start) ================================
+[09/23 22:17:48] Agent user cache is enabled
+[09/23 22:17:48] Initialized EventLog
+[09/23 22:17:48] ResourceGroupRegistry: reconciled 0 durable group(s) from store (0 transient member(s) dropped, 0 temporary group(s) purged)
+[09/23 22:17:48] Reverse index built: 0 indexed, 0 skipped (no SID), 0 degraded (no name), 0 SID mappings, 0 name mappings
+[09/23 22:17:48] Successfully mapped Agentic Platform virtual account groups.
+[09/23 22:17:48] Changing service start type to SERVICE_AUTO_START (2)
+[09/23 22:17:48] Ready.
+[09/23 22:17:48] Startup husk cleanup finished; no outstanding work remains.
+[09/23 22:18:18] Uninitialized EventLog
+[09/23 22:18:18] Changing service start type to SERVICE_DEMAND_START (3)
