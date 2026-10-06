@@ -1,10 +1,10 @@
-from encodings import utf_8
 from tkinter import *
 from tkinter import  filedialog as fd
 from tkinter.messagebox import showerror
-from PIL import Image, ImageTk
-from transliterate import translit,get_available_language_codes
+import time
 from googletrans import Translator, LANGUAGES
+from transliterate import translit,get_available_language_codes
+from deep_translator import GoogleTranslator
 
 
 
@@ -24,14 +24,18 @@ def transliter():
 
 def translate_text():
     try:
-        sours_text = text.get(1.0, END)
-        translator= Translator()
+        sours_text = text.get(1.0, END).strip()
+        translator= GoogleTranslator()
+
         t_text = translator.translate(sours_text, src='ru', dest='en')
         text.delete(1.0, END)
         text.insert(1.0, t_text)
     except Exception as e:
         showerror('Ошибка', f'Произошла ошибка перевода {e}')
         print(e)
+    finally:
+        time.sleep(3)
+
 
 
 def insert():
