@@ -48,6 +48,10 @@ def save_image():
 def quit_win():
     window.destroy()
 
+def clear_image():
+    canvas.delete('all')
+
+
 
 window = Tk()
 window.title("Графический редактор")
@@ -66,7 +70,8 @@ thickness = Entry(frame, width=5) # Поле ввода толщины лини�
 thickness.grid(row=0,column=1)
 btm = Button(frame, text='Установить толщину', command = change_in_thickness)
 btm.grid(row=0, column=2, padx=5)
-
+btm = Button(frame, text='Стереть всё', command = clear_image)
+btm.grid(row=0, column=3, padx=5)
 
 colors= ['red','green','blue','black','yellow', 'violet', 'light gray','pink','light green']
 for color in colors:
@@ -82,6 +87,8 @@ file_menu = Menu(menu_bar, tearoff=0)
 menu_bar.add_cascade(label='Фаил', menu=file_menu)
 file_menu.add_command(label='Загрузить изображение', command=load_image)
 file_menu.add_command(label='Сохранить изображение', command=save_image)
+file_menu.add_separator()
+file_menu.add_command(label='Очистить изображение', command=clear_image)
 file_menu.add_separator()
 file_menu.add_command(label='Выход', command=quit_win)
 
