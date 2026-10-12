@@ -7,14 +7,13 @@ def handler(x):
 def unbusy(num, row):
 
     if row <= 3:
-        color = 'red'
+        color = '#FC1621'
     elif 4 <= row <= 6:
-        color = 'blue'
+        color = '#14A9FC'
     else:
-        color = 'yellow'
+        color = '#FCF714'
 
     btns[num - 1].config(bg = color)
-
 
 image= '2.ico'
 
@@ -35,12 +34,12 @@ screen.pack()
 canvas = Canvas(frame1, width=400, height=60)
 canvas.pack()
 
-canvas.create_line(50,10,350,10, fill='lightblue', width=8)
-canvas.create_line(60,40,140,40, fill='red', width=4)
+canvas.create_line(30,10,380,10, fill='lightblue', width=8)
+canvas.create_line(60,40,140,40, fill='#FC1621', width=4)
 canvas.create_text(100,30, text='1500')
-canvas.create_line(160,40,240,40, fill='blue', width=4)
+canvas.create_line(160,40,240,40, fill='#14A9FC', width=4)
 canvas.create_text(200,30, text='1200')
-canvas.create_line(260,40,340,40, fill='yellow', width=4)
+canvas.create_line(260,40,340,40, fill='#FCF714', width=4)
 canvas.create_text(300,30, text='1000')
 
 # btn1 = Button(frame2)
@@ -63,11 +62,11 @@ for i in range(row):
     for j in range(colomn):
         num = i *colomn + j + 1
         if i <=3:
-            color = 'red'
+            color = '#FC1621'
         elif 4<= i <=6:
-            color = 'blue'
+            color = '#14A9FC'
         else:
-            color = 'yellow'
+            color = '#FCF714'
         btn = Button(frame2)
         btn.config(text=f'{j + 1}', font=('Arial', 10), bg=color,justify='center', width=2, command=lambda x= num: handler(x))
         btn.grid(row = i, column = j + 1,padx=0.4, pady=0.4)
@@ -75,10 +74,6 @@ for i in range(row):
         btn.bind('<Button-3>', lambda event, nm = num, r=i: unbusy(nm, r))
 
         btns.append(btn)
-
-
-
-
 
 
 root.mainloop()
