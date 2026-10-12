@@ -1,4 +1,16 @@
 import time
+import random
+from math import sqrt
+
+
+def in_out(func):
+    def wrapper(*args, **kwargs):
+        print(f'на входе функции {func.__name__} -  {args}\n {kwargs}')
+        result = func(*args, **kwargs)
+        print(f'На выходе функции {func.__name__} - {result}')
+        return result / 100
+    return wrapper
+
 
 
 def time_run(func):
@@ -27,8 +39,14 @@ def etalon(n, m, z):
     print('ETALON')
     time.sleep(n + m + z)
 
+@in_out
+def summator(n,m):
+    return n + m
+
 
 if __name__ == '__main__':
 
     # proba()
     etalon(3, 1, 1 )
+    res = sqrt(summator(random.randint(1,100), random.randint(1,100))/.033)
+    print(res)
