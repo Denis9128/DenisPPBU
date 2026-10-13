@@ -12,4 +12,4 @@ print('текст зашифрован')
 with open('code.txt', 'w', encoding='utf-8') as file:
     file.write(secrets)
 
-print('Сформирован code.txt')
+print('Сформирован фаил code.txt')

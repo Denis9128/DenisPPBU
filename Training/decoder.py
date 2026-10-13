@@ -6,9 +6,9 @@ with open('code.txt', 'r', encoding='utf-8') as file:
         code = ord(c) - int(key)
         symbol = chr(code)
         unsecrets += symbol
-print('текст расшифрован')
+print('Текст расшифрован')
 
 with open('decode.txt', 'w', encoding='utf-8') as file:
     file.write(unsecrets)
 
-print('Сформирован decode.txt')
+print('Сформирован фаил decode.txt')
