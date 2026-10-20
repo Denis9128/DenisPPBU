@@ -38,6 +38,7 @@ def update_score():
     global score, start_time
     score += 1
     score_label.config(text=f'Счет: {score}')
+    time_label.config(text=f'Время: {(time.time()-start_time):.1f}')
     if score >= 10:
         end_time = time.time()
         if end_time - start_time < 20: # Дата начала и дата окончания меньше
@@ -53,16 +54,16 @@ def start_game():
     global score, start_time
     score = 0
     score_label.config(text=f'Счет: {score}')
+    time_label.config(text=f'Время: {0}')
     start_time = time.time()  # Время начала игры
-
 
 
 
 window = Tk()
 window.title("Игра с шариком")
-window.geometry("400x330+1000+400")
+window.geometry("400x350+1000+400")
 
-canvas = Canvas(width=400, height=300)
+canvas = Canvas(width=400, height=300, bg='white')
 canvas.pack()
 
 score = 0
@@ -70,8 +71,10 @@ start_time = time.time() # Время начала игры
 
 ball = canvas.create_oval(180,180,220,220,fill="red")         # шар
 square = canvas.create_rectangle(150,150,170,170,fill="blue") # Квадрат
-score_label = Label(text=f'Счет: {score}')
-score_label.pack()
+score_label = Label(text=f'Счет: {score}', width=10, height=15, fg="red", font=("Arial", 16))
+score_label.pack(side="left")
+time_label = Label(text=f'Время: {0}', width=10, height=15, fg="red", font=("Arial", 16))
+time_label.pack(side="left")
 
 window.bind('<KeyPress>', move_ball)
 window.focus_set()
