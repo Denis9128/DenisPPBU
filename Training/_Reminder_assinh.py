@@ -35,7 +35,10 @@ def check():
             t=0
         window.after(10000, check) # Вызвать функцию через 10000
 
-
+def play_snd():
+    pygame.mixer.init()
+    pygame.mixer.music.load('remainder.mp3') #Загрузить указанный фаил с музыкой
+    pygame.mixer.music.play() # Запустить файл с музыкой
 
 
 
