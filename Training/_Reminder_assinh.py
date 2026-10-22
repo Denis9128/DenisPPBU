@@ -12,8 +12,8 @@ window.title("Напоминание")
 label = Label(text='Установите напоминание')
 label.pack(pady=10)
 
-set_batton = Button(text='Установить напоминание', command=set)
-set_batton.pack(pady=10)
+set_button = Button(text='Установить напоминание', command=set)
+set_button.pack(pady=10)
 
 
 
