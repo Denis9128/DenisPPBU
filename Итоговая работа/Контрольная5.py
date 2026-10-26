@@ -21,7 +21,7 @@ def update_currency_label(event):
     name_val = name
 
 def update_base_label(event):
-    # base_label_label.config(text='')
+    base_label.config(text='')
     code = base_combobox.get().strip()
     name = correncies[code]
     base_label.config(text = name)
@@ -29,10 +29,10 @@ def update_base_label(event):
     # name_val = name
 
 def Second_update_base_label(event):
-    # base_label_label.config(text='')
-    code = Second_base_combobox.get().strip()
+    second_base_label.config(text='')
+    code = second_base_combobox.get().strip()
     name = correncies[code]
-    base_label.config(text = name)
+    second_base_label.config(text = name)
     # global name_val
     # name_val = name
 
@@ -44,16 +44,14 @@ def exchange():
 
     # base_cod = base_combobox.get()  # Базовая валюта
 
-    second_base_cod = Second_base_combobox.get()  # Вторая базовая валюта
+    second_base_cod = second_base_combobox.get()  # Вторая базовая валюта
     currency_list.insert(1,second_base_cod)
     # print(currency_list)
 
     target_cod = target_combobox.get()  # Целевая валюта
 
     for cod in currency_list:
-        print(cod)
 
-        # code = combobox.get().upper()
         if target_cod and cod:
             try:
                 response = requests.get(f'https://open.er-api.com/v6/latest/{cod}')
@@ -94,23 +92,25 @@ correncies = {'EUR':'Евро',
 
 root = Tk()
 root.title('Курсы обмена валюты к USD')
-root.geometry('360x220')
+root.geometry('360x260')
 
-Label(root, text= 'Базовая валюта').pack()
+Label(root, text= 'Базовая валюта',font=('Arial',12)).pack()
 base_combobox = ttk.Combobox(root, values=list(correncies.keys()))
 base_combobox.pack(pady=3, padx=3)
 base_combobox.bind('<<ComboboxSelected>>', update_base_label)
 
-
-Label(root, text= 'Вторая базовая валюта').pack()
-Second_base_combobox = ttk.Combobox(root, values=list(correncies.keys()))
-Second_base_combobox.pack(pady=3, padx=3)
-Second_base_combobox.bind('<<ComboboxSelected>>', Second_update_base_label)
-
 base_label = ttk.Label()
 base_label.pack()
 
-Label(root, text='Целевая валюта').pack()
+Label(root, text= 'Вторая базовая валюта',font=('Arial',12)).pack()
+second_base_combobox = ttk.Combobox(root, values=list(correncies.keys()))
+second_base_combobox.pack(pady=3, padx=3)
+second_base_combobox.bind('<<ComboboxSelected>>', Second_update_base_label)
+
+second_base_label = ttk.Label()
+second_base_label.pack()
+
+Label(root, text='Целевая валюта',font=('Arial',12)).pack()
 
 # popular_currencies = ['EUR', 'USD', 'JPY', 'GBP', 'AUD', 'CAD', 'CHF', 'CNY', 'RUB','KZT', 'UZS']
 
