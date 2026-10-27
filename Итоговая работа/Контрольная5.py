@@ -6,46 +6,37 @@ from datetime import *
 import requests
 
 
-# name_val = ''
-
 def update_currency_label(event):
-    # update_currency_label.config(text='')
     code = target_combobox.get().strip()
     name = correncies[code]
     target_label.config(text = name)
-    # global name_val
-    # name_val = name
+
 
 def update_base_label(event):
     base_label.config(text='')
     code = base_combobox.get().strip()
     name = correncies[code]
     base_label.config(text = name)
-    # global name_val
-    # name_val = name
+
 
 def second_update_base_label(event):
     second_base_label.config(text='')
     code = second_base_combobox.get().strip()
     name = correncies[code]
     second_base_label.config(text = name)
-    # global name_val
-    # name_val = name
+
 
 def exchange():
-    global exchange_rate, base, target, currency_list_info
+    global currency_list_info
+
     currency_list = [] # Список валюты
     currency_list_info = []
 
-
-    base_cod=base_combobox.get() #Базовая валюта
+    base_cod = base_combobox.get() #Базовая валюта
     currency_list.insert(0,base_cod)
-
-    # base_cod = base_combobox.get()  # Базовая валюта
 
     second_base_cod = second_base_combobox.get()  # Вторая базовая валюта
     currency_list.insert(1,second_base_cod)
-    # print(currency_list)
 
     target_cod = target_combobox.get()  # Целевая валюта
 
@@ -60,16 +51,12 @@ def exchange():
                     exchange_rate = data['rates'][target_cod]
                     base = correncies[cod]
                     target = correncies[target_cod]
-                    # currency_name = correncies[code]
 
                     currency_info = (f'{exchange_rate:.1f} {target} за 1 {base}.')
                     currency_list_info.insert(0, currency_info)
 
-                # mb.showinfo('Курс обмена.', f'Курс валюты на {time_tek} :\n{exchange_rate:.1f} {target} за 1 {base}.')
                 else:
                     mb.showinfo('Ошибка!', f'Валюта {target_cod} не найдена.')
-
-                # mb.showinfo('Курс обмена.','Курс валюты на {time_tek} :\n{exchange_rate:.1f} {target} за 1 {base}.')
             except Exception as e:
                 mb.showinfo('Ошибка!', f'{e}')
         else:
@@ -78,21 +65,47 @@ def exchange():
     form_the_final_list()
 
 
+
 def form_the_final_list():
     global currency_list_info
 
+    current_time = datetime.today()  # Текущее время
+    ru = ""
+    m = current_time.month  # Получаем номер месяца
+    if m == 1:
+        ru = "Янвря"
+    elif m == 2:
+        ru = "Февряля"
+    elif m == 3:
+        ru = "Марта"
+    elif m == 4:
+        ru = "Апреля"
+    elif m == 5:
+        ru = "Мая"
+    elif m == 6:
+        ru = "Июня"
+    elif m == 7:
+        ru = "Июля"
+    elif m == 8:
+        ru = "Августа"
+    elif m == 9:
+        ru = "Сентября"
+    elif m == 10:
+        ru = "Октября"
+    elif m == 11:
+        ru = "Ноября"
+    elif m == 12:
+        ru = "Деабря"
+
+    time_tek = current_time.strftime(f"%d {ru} %Y")
+
     currency_window = Toplevel(root)
-    now = datetime.now()  # Текущее время
-    current_time = now.today()
-    time_tek = current_time.strftime("%d %B %Y")
-
     currency_window.title(f'Курс обмена валюты на {time_tek}')
-    currency_window.geometry('500x70')
-    rr = f'{currency_list_info[0]}\n {currency_list_info[1]}'
+    currency_window.geometry('500x70+700+350')
 
+    info = f'{currency_list_info[1]}\n {currency_list_info[0]}'
 
-
-    label = Label(currency_window, text=rr)
+    label = Label(currency_window, text=info, justify='left')
     label.pack()
 
 correncies = {'EUR':'Евро',
@@ -108,15 +121,13 @@ correncies = {'EUR':'Евро',
               'UZS': 'Узбекский сум'
               }
 
-exchange_rate = ''
-target = ''
-base =''
+
 currency_list_info = [] # Список курсов
 
 
 root = Tk()
 root.title('Курсы обмена валюты')
-root.geometry('360x260')
+root.geometry('360x260+700+350')
 
 Label(root, text= 'Базовая валюта',font=('Arial',12)).pack()
 base_combobox = ttk.Combobox(root, values=list(correncies.keys()))
@@ -143,6 +154,6 @@ target_combobox.bind('<<ComboboxSelected>>', update_currency_label)
 target_label = ttk.Label()
 target_label.pack()
 
-Button(text='Получить курс обмена к доллару', command=exchange).pack(pady=10, padx=10)
+Button(text='Получить курс обмена валют', command=exchange).pack(pady=10, padx=10)
 
 root.mainloop()
