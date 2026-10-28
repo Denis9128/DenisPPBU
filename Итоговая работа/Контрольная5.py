@@ -19,7 +19,7 @@ def update_base_label(event):
     base_label.config(text = name)
 
 
-def second_update_base_label(event):
+def update_second_base_label(event):
     second_base_label.config(text='')
     code = second_base_combobox.get().strip()
     name = correncies[code]
@@ -27,10 +27,11 @@ def second_update_base_label(event):
 
 
 def exchange():
+
     global currency_list_info
 
     currency_list = [] # Список валюты
-    currency_list_info = []
+    #
 
     base_cod = base_combobox.get() #Базовая валюта
     currency_list.insert(0,base_cod)
@@ -52,7 +53,7 @@ def exchange():
                     base = correncies[cod]
                     target = correncies[target_cod]
 
-                    currency_info = (f'{exchange_rate:.1f} {target} за 1 {base}.')
+                    currency_info = (f'{exchange_rate:.2f} {target} за 1 {base}.')
                     currency_list_info.insert(0, currency_info)
 
                 else:
@@ -60,14 +61,15 @@ def exchange():
             except Exception as e:
                 mb.showinfo('Ошибка!', f'{e}')
         else:
+            currency_list_info = [] # Если не выбран код, очищаем ранее сформированный список
             showinfo('Внимание!','Выберите код валюты.')
-
-    form_the_final_list()
-
+    if currency_list_info:
+        form_the_final_list()
 
 
 def form_the_final_list():
     global currency_list_info
+
 
     current_time = datetime.today()  # Текущее время
     ru = ""
@@ -101,12 +103,14 @@ def form_the_final_list():
 
     currency_window = Toplevel(root)
     currency_window.title(f'Курс обмена валюты на {time_tek}')
-    currency_window.geometry('500x70+700+350')
+    currency_window.geometry('500x50+700+350')
+    if currency_list_info:
+        info = f'{currency_list_info[1]}\n{currency_list_info[0]}'
 
-    info = f'{currency_list_info[1]}\n {currency_list_info[0]}'
-
-    label = Label(currency_window, text=info, justify='left')
-    label.pack()
+        label = Label(currency_window, text=info, justify='left')
+        label.pack()
+    else:
+        showinfo('Внимание!', 'Выберите код валюты.')
 
 correncies = {'EUR':'Евро',
               'USD':'Доллар США',
@@ -126,8 +130,12 @@ currency_list_info = [] # Список курсов
 
 
 root = Tk()
+WIDTH = root.winfo_screenwidth() # Размер ширины экрана монитора
+HEIGHT = root.winfo_screenheight()  #Размер высоты экрана монитора
 root.title('Курсы обмена валюты')
-root.geometry('360x260+700+350')
+x  = 360
+y = 260
+root.geometry(f'{x}x{y}+{WIDTH // 2 - x // 2}+{HEIGHT // 2 - y // 2 - 25}')
 
 Label(root, text= 'Базовая валюта',font=('Arial',12)).pack()
 base_combobox = ttk.Combobox(root, values=list(correncies.keys()))
@@ -140,7 +148,7 @@ base_label.pack()
 Label(root, text= 'Вторая базовая валюта',font=('Arial',12)).pack()
 second_base_combobox = ttk.Combobox(root, values=list(correncies.keys()))
 second_base_combobox.pack(pady=3, padx=3)
-second_base_combobox.bind('<<ComboboxSelected>>', second_update_base_label)
+second_base_combobox.bind('<<ComboboxSelected>>', update_second_base_label)
 
 second_base_label = ttk.Label()
 second_base_label.pack()
