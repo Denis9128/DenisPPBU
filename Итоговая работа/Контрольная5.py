@@ -4,6 +4,7 @@ from tkinter.messagebox import showinfo
 from tkinter import ttk
 from datetime import *
 import requests
+from jupyterlab.extensions import readonly
 
 
 def update_currency_label(event):
@@ -41,28 +42,29 @@ def exchange():
 
     target_cod = target_combobox.get()  # Целевая валюта
 
-    for cod in currency_list:
 
-        if target_cod and cod:
+
+
+    if target_cod and base_cod and second_base_cod: #Если заполнены реквизиты Базовая, вторая базовая и целевая валюта
+        for cod in currency_list: # В цикле получаем оба кода из currency_list
             try:
                 response = requests.get(f'https://open.er-api.com/v6/latest/{cod}')
                 response.raise_for_status()
                 data = response.json()
-                if target_cod in data['rates']:
+                if target_cod  in data['rates']:
                     exchange_rate = data['rates'][target_cod]
                     base = correncies[cod]
                     target = correncies[target_cod]
-
-                    currency_info = (f'{exchange_rate:.2f} {target} за 1 {base}.')
+                    currency_info = (f'{exchange_rate:.2f}   {target} за 1 {base}.')
                     currency_list_info.insert(0, currency_info)
 
                 else:
                     mb.showinfo('Ошибка!', f'Валюта {target_cod} не найдена.')
             except Exception as e:
                 mb.showinfo('Ошибка!', f'{e}')
-        else:
-            currency_list_info = [] # Если не выбран код, очищаем ранее сформированный список
-            showinfo('Внимание!','Выберите код валюты.')
+    else:
+        currency_list_info = [] # Если не выбран код, очищаем ранее сформированный список
+        showinfo('Внимание!','Выберите код валюты!')
     if currency_list_info:
         form_the_final_list()
 
@@ -97,42 +99,43 @@ def form_the_final_list():
     elif m == 11:
         ru = "Ноября"
     elif m == 12:
-        ru = "Деабря"
+        ru = "Декабря"
 
     time_tek = current_time.strftime(f"%d {ru} %Y")
 
-    currency_window = Toplevel(root)
+    currency_window = Toplevel(root, bg = 'white')
     currency_window.title(f'Курс обмена валюты на {time_tek}')
     currency_window.geometry('500x50+700+350')
+
     if currency_list_info:
         info = f'{currency_list_info[1]}\n{currency_list_info[0]}'
 
-        label = Label(currency_window, text=info, justify='left')
+        label = Label(currency_window, text=info, justify='left', font=("Arial",12), bg = 'white')
         label.pack()
-    else:
-        showinfo('Внимание!', 'Выберите код валюты.')
+    # else:
+    #     showinfo('Внимание!!!', 'Выберите код валюты!!!')
 
-correncies = {'EUR':'Евро',
-              'USD':'Доллар США',
-              'RUB': 'Российский рубль',
-              'JPY':'Японская йена',
-              'GBP':'Фунт стерлингов',
-              'AUD':'Австралийский доллар',
-              'CHF':'Швейцарский франк',
-              'CAD': 'Канадский доллар',
-              'CNY': 'Китайский юань',
-              'KZT': 'Казахстанский тенге',
-              'UZS': 'Узбекский сум',
-              'INR': 'Индийская рупия',
-              'BRL': 'Бразильский реал',
-              'TRY': 'Турецкая лира',
-              'ZAR': 'Южноафриканский рэнд',
-              'SEK': 'Шведская крона',
-              'NOK': 'Норвежская крона',
-              'DKK': 'Датская крона',
-              'SGD': 'Сингапурский доллар',
-              'HKD': 'Гонконгский доллар',
-              'THB': 'Тайский бат'
+correncies = {'EUR':'"€" Евро',
+              'USD':'"$" Доллар США',
+              'RUB':'"₽" Российский рубль',
+              'JPY':'"¥" Японская йена',
+              'GBP':'"£" Фунт стерлингов',
+              'AUD':'"A$" Австралийский доллар',
+              'CHF':'"Fr" Швейцарский франк',
+              'CAD': '"C$" Канадский доллар',
+              'CNY': '"¥" Китайский юань',
+              'KZT': '"₸" Казахстанский тенге',
+              'UZS': '"сўм" Узбекский сум',
+              'INR': '"₹" Индийская рупия',
+              'BRL': '"R$" Бразильский реал',
+              'TRY': '"₺" Турецкая лира',
+              'ZAR': '"R" Южноафриканский рэнд',
+              'SEK': '"kr" Шведская крона',
+              'NOK': '"kr" Норвежская крона',
+              'DKK': '"kr" Датская крона',
+              'SGD': '"S$" Сингапурский доллар',
+              'HKD': '"HK$" Гонконгский доллар',
+              'THB': '"฿" Тайский бат'
               }
 
 
@@ -148,7 +151,7 @@ y = 260
 root.geometry(f'{x}x{y}+{WIDTH // 2 - x // 2}+{HEIGHT // 2 - y // 2 - 25}')
 
 Label(root, text= 'Базовая валюта',font=('Arial',12)).pack()
-base_combobox = ttk.Combobox(root, values=list(correncies.keys()))
+base_combobox = ttk.Combobox(root, values=list(correncies.keys()),state="readonly")
 base_combobox.pack(pady=3, padx=3)
 base_combobox.bind('<<ComboboxSelected>>', update_base_label)
 
@@ -156,7 +159,7 @@ base_label = ttk.Label()
 base_label.pack()
 
 Label(root, text= 'Вторая базовая валюта',font=('Arial',12)).pack()
-second_base_combobox = ttk.Combobox(root, values=list(correncies.keys()))
+second_base_combobox = ttk.Combobox(root, values=list(correncies.keys()),state="readonly")
 second_base_combobox.pack(pady=3, padx=3)
 second_base_combobox.bind('<<ComboboxSelected>>', update_second_base_label)
 
@@ -165,7 +168,7 @@ second_base_label.pack()
 
 Label(root, text='Целевая валюта',font=('Arial',12)).pack()
 
-target_combobox = ttk.Combobox(root, values=list(correncies.keys()))  #Целевая валюта
+target_combobox = ttk.Combobox(root, values=list(correncies.keys()),state="readonly")  #Целевая валюта
 target_combobox.pack(pady=3, padx=3)
 target_combobox.bind('<<ComboboxSelected>>', update_currency_label)
 
