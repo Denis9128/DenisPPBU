@@ -14,17 +14,37 @@ def update_currency_label(event): # Обновляет label с наименов
     currency_label.config(text = name.capitalize())
 
 
+# data = requests.get("https://api.coinlore.net/api/tickers/",
+#                  params={"start": 0, "limit": 100})
+#
+#
+#
+# for coin in data.json()["data"]:
+#     print(coin["symbol"], coin["price_usd"])
+
+
 def exchange():
     code = combobox.get().upper()
     if code:
         try:
             currency_name = correncies[code]
-            response = requests.get((f'https://api.coingecko.com/api/v3/simple/price?vs_currencies=usd&ids={currency_name}&x_cg_demo_api_key=CG-yHwb17uNimkYBcHgH7QneHVE'),timeout=10)
+            if source_var.get() == 'https://api.coingecko.com':
+                response = requests.get((f'https://api.coingecko.com/api/v3/simple/price?vs_currencies=usd&ids={currency_name}&x_cg_demo_api_key=CG-yHwb17uNimkYBcHgH7QneHVE'),timeout=10)
 
-            data = response.json()
-            if currency_name.lower() in data:
-                price = data[currency_name.lower()].get('usd')
-                currency_label.config(text = (f'За 1 {(currency_name).capitalize()}, {price:.2f} $ США'), foreground='#85bb65', font=('Arial', 15))
+                data = response.json()
+                if currency_name.lower() in data:
+                    price = data[currency_name.lower()].get('usd')
+                    currency_label.config(text = (f'За 1 {(currency_name).capitalize()}, {price:.2f} $ США'), foreground='#85bb65', font=('Arial', 15))
+
+            if source_var.get() == 'https://api.coinlore.net':
+                response2 = requests.get("https://api.coinlore.net/api/tickers/",timeout=10, params={"start": 0, "limit": 100})
+                data2 = response2.json()["data"]
+
+                for coin in data2:
+                    if coin.get('symbol') == code:
+                        price = float(coin.get('price_usd')) # Переводим строку в число с плавающей точкой
+                        currency_label.config(text=(f'За 1 {(currency_name).capitalize()}, {price:.2f} $ США'),
+                                              foreground='#85bb65', font=('Arial', 15))
 
         except Exception as e:
             showinfo('Ошибка', f'Ошибка при получении цены {e}')
@@ -68,30 +88,34 @@ root.title('Курсы обмена криптовалюты к USD')
 WIDTH = root.winfo_screenwidth() # Размер ширины экрана монитора
 HEIGHT = root.winfo_screenheight()  #Размер высоты экрана монитора
 x  = 400
-y = 130
+y = 200
 root.geometry(f'{x}x{y}+{WIDTH // 2 - x // 2}+{HEIGHT // 2 - y // 2 - 25}') # окно root в центре экрана
+
+
 
 frame = Frame(root,background='white')
 frame.pack()
 
-label = Label(frame, text='Выберите код криптовалюты: ',background='white')
-label.grid(row=0, column=0, pady= 10)
+Label(frame, text = 'Выберите источник:',background='white').grid(row=0, column=0, pady= 5,sticky='w')
 
-combobox = ttk.Combobox(frame, values=list(correncies.keys()),background='white') # Поле только для выбора
-combobox.grid(row=0, column=3, pady= 10)
+source_var = StringVar(value='https://api.coingecko.com')
+
+radbatt1 = Radiobutton(frame, text='api.coingecko.com',background='white',variable=source_var, value='https://api.coingecko.com')
+radbatt1.grid(row=0, column=1,sticky='w')
+
+radbatt2 = Radiobutton(frame, text='api.coinlore.net',background='white',variable=source_var, value='https://api.coinlore.net')
+radbatt2.grid(row=1, column=1,sticky='w')
+
+label = Label(frame, text='Выберите код криптовалюты:      ',background='white')
+label.grid(row=2, column=0, pady=5,sticky='w')
+
+combobox = ttk.Combobox(frame, values=list(correncies.keys()),background='white',state="readonly") # Поле только для выбора
+combobox.grid(row=2, column=1, pady= 5)
 combobox.bind('<<ComboboxSelected>>', update_currency_label)
 
 currency_label = ttk.Label(foreground='#85bb65', font=('Arial', 15),background='white') # label для отображения выбранной валюты
 currency_label.pack(pady=5)
 
 Button(text='Получить курс обмена', command=exchange,background='#85bb65').pack(pady=10, padx=10)
-
-
-# p = pprint.PrettyPrinter(indent=4)
-# result = requests.get('https://open.er-api.com/v6/latest/USD')
-# data = json.loads(result.text)
-#
-# p.pprint(data)
-
 
 root.mainloop()
