@@ -1,46 +1,35 @@
 from tkinter import *
-from tkinter import messagebox as mb
-from tkinter.messagebox import showinfo
+from tkinter.messagebox import showinfo, showerror
 from tkinter import ttk
-from datetime import *
 import requests
-from transliterate.contrib.languages import bg
 
 
 def update_currency_label(event): # Обновляет label с наименованием валюты
     currency_label.config(text='') # Очищаем если что то было написано
     code = combobox.get() # Получаем данные из комбобокса
     name = correncies[code]
-    currency_label.config(text = name.capitalize())
-
-
-# data = requests.get("https://api.coinlore.net/api/tickers/",
-#                  params={"start": 0, "limit": 100})
-#
-#
-#
-# for coin in data.json()["data"]:
-#     print(coin["symbol"], coin["price_usd"])
+    currency_label.config(text = name.capitalize()) # Делаем первую букву заглавной
 
 
 def exchange():
-    code = combobox.get().upper()
-    if code:
+    code = combobox.get().upper() # Данные из комбобокса
+    if code: # Если заполнили то...
         try:
-            currency_name = correncies[code]
-            if source_var.get() == 'https://api.coingecko.com':
+            currency_name = correncies[code] # Получаем данные из словаря
+            if source_var.get() == 'https://api.coingecko.com': # Если выбран источник
                 response = requests.get((f'https://api.coingecko.com/api/v3/simple/price?vs_currencies=usd&ids={currency_name}&x_cg_demo_api_key=CG-yHwb17uNimkYBcHgH7QneHVE'),timeout=10)
-
-                data = response.json()
-                if currency_name.lower() in data:
+                response.raise_for_status() #  статус-код ответа сервера и вызывает исключение HTTPError
+                data = response.json() # Получаем данные в формате json
+                if currency_name.lower() in data: # Если есть совпадения из выбранной валюты в данных
                     price = data[currency_name.lower()].get('usd')
                     currency_label.config(text = (f'За 1 {(currency_name).capitalize()}, {price:.2f} $ США'), foreground='#85bb65', font=('Arial', 15))
 
             if source_var.get() == 'https://api.coinlore.net':
-                response2 = requests.get("https://api.coinlore.net/api/tickers/",timeout=10, params={"start": 0, "limit": 100})
-                data2 = response2.json()["data"]
+                response = requests.get("https://api.coinlore.net/api/tickers/",timeout=10, params={"start": 0, "limit": 100})
+                response.raise_for_status() #  статус-код ответа сервера и вызывает исключение HTTPError
+                data = response.json()["data"]
 
-                for coin in data2:
+                for coin in data:
                     if coin.get('symbol') == code:
                         price = float(coin.get('price_usd')) # Переводим строку в число с плавающей точкой
                         currency_label.config(text=(f'За 1 {(currency_name).capitalize()}, {price:.2f} $ США'),
@@ -79,19 +68,18 @@ correncies = {'BTC':'Bitcoin',
               'XTZ': 'tezos',
               'ALGO': 'algorand',
               'VET': 'vechain',
-              'EOS': 'eos'}
-
+              'EOS': 'eos'
+              }
 
 root = Tk()
 root.configure(background='white')
-root.title('Курсы обмена криптовалюты к USD')
+root.title('CoinPulse')
+root.iconbitmap('btc.ico')
 WIDTH = root.winfo_screenwidth() # Размер ширины экрана монитора
 HEIGHT = root.winfo_screenheight()  #Размер высоты экрана монитора
 x  = 400
-y = 200
+y = 180
 root.geometry(f'{x}x{y}+{WIDTH // 2 - x // 2}+{HEIGHT // 2 - y // 2 - 25}') # окно root в центре экрана
-
-
 
 frame = Frame(root,background='white')
 frame.pack()
