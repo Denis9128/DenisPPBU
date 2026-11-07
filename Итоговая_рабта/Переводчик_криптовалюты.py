@@ -24,7 +24,7 @@ def exchange():
                     price = data[currency_name.lower()].get('usd')
                     currency_label.config(text = (f'За 1 {(currency_name).capitalize()}, {price:.2f} $ США'), foreground='#85bb65', font=('Arial', 15))
 
-            if source_var.get() == 'https://api.coinlore.net':
+            else:
                 response = requests.get("https://api.coinlore.net/api/tickers/",timeout=10, params={"start": 0, "limit": 100})
                 response.raise_for_status() #  статус-код ответа сервера и вызывает исключение HTTPError
                 data = response.json()["data"]
