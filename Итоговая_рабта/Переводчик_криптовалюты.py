@@ -29,7 +29,7 @@ def exchange():
                 response.raise_for_status() #  статус-код ответа сервера и вызывает исключение HTTPError
                 data = response.json()["data"]
 
-                for coin in data:
+                for coin in data: 
                     if coin.get('symbol') == code:
                         price = float(coin.get('price_usd')) # Переводим строку в число с плавающей точкой
                         currency_label.config(text=(f'За 1 {(currency_name).capitalize()}, {price:.2f} $ США'),
