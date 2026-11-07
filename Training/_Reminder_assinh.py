@@ -22,8 +22,8 @@ def set():
             t = dt.timestamp() # Переводим полученное время с секунды
             print(t)
             check()
-            labtime = dt.strftime("%H:%M")
-            label.config(text=f'Напоминание на: {labtime}')
+            text = sd.askstring('Текст напоминания','Введите текст напоминания')
+            label.config(text=f'Напоминание на: {hour}:{minute} {text}')
 
         except Exception as e:
             mb.showerror('Ошибка',f'Произошла ошибка {e}')
@@ -66,7 +66,7 @@ set_button = Button(text='Установить напоминание', command=
 set_button.pack(pady=10)
 
 stop_music = Button(text='Остановить музыку', command=stop_music)
-stop_music.pack(pady=10)
+stop_music.pack(pady=5)
 
 
 
