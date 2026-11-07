@@ -10,11 +10,11 @@ music = False
 
 def set():
     global t
-    rem = sd.askstring('Время напоминания','Введите время напомнинания в формате ЧЧ:ММ в 24 часовом формате')
+    rem = sd.askstring('Время напоминания','Введите время напоминания в формате ЧЧ:ММ в 24 часовом формате')
     if rem:
         try:
             hour = int(rem.split(':')[0]) # Делим введенные данные по символу ":", т.е делим пополам, берем 0 часть
-            minute = int(rem.split(':')[1]) # Получаемминуты, после знака
+            minute = int(rem.split(':')[1]) # Получаем минуты, после знака
             now = datetime.datetime.now() # Получаем текущее время
             print(now)
             dt = now.replace(hour=hour, minute=minute, second=0) # Заменяем данные часы и минуты текущие на часы и минуты из ввода
@@ -22,6 +22,8 @@ def set():
             t = dt.timestamp() # Переводим полученное время с секунды
             print(t)
             check()
+            labtime = dt.strftime("%H:%M")
+            label.config(text=f'Напоминание на: {labtime}')
 
         except Exception as e:
             mb.showerror('Ошибка',f'Произошла ошибка {e}')
@@ -40,15 +42,16 @@ def play_snd():
     global music
     music =True
     pygame.mixer.init()
-    pygame.mixer.music.load('remainder.mp3') #Загрузить указанный фаил с музыкой
-    pygame.mixer.music.play() # Запустить файл с музыкой
+    pygame.mixer.music.load('remainder.mp3') #Загрузить указанный файл с музыкой
+    pygame.mixer.music.set_volume(0.3) # Громкость
+    pygame.mixer.music.play(fade_ms=0) # Запустить файл с музыкой fade_ms=0 - Плавное нарастание
 
 def stop_music():
     global music
     if music:
         pygame.mixer.music.stop()
         music = False
-    Label.config(text='Установить новое напоминание')
+    label.config(text='Установить новое напоминание')
 
 
 window = Tk()
