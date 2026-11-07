@@ -1,11 +1,11 @@
 from tkinter import *
-from tkinter.messagebox import showinfo, showerror
+from tkinter.messagebox import showinfo
 from tkinter import ttk
 import requests
 
 
 def update_currency_label(event): # Обновляет label с наименованием валюты
-    currency_label.config(text='') # Очищаем если что то было написано
+    currency_label.config(text='') # Очищаем если-что то было написано
     code = combobox.get() # Получаем данные из комбобокса
     name = correncies[code]
     currency_label.config(text = name.capitalize()) # Делаем первую букву заглавной
