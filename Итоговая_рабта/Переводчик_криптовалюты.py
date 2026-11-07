@@ -15,7 +15,7 @@ def exchange():
     code = combobox.get().upper() # Данные из комбобокса
     if code: # Если заполнили то...
         try:
-            currency_name = correncies[code] # Получаем данные из словаря
+            currency_name = correncies[code] # Получаем данные из словаря.
             if source_var.get() == 'https://api.coingecko.com': # Если выбран источник
                 response = requests.get((f'https://api.coingecko.com/api/v3/simple/price?vs_currencies=usd&ids={currency_name}&x_cg_demo_api_key=CG-yHwb17uNimkYBcHgH7QneHVE'),timeout=10)
                 response.raise_for_status() #  статус-код ответа сервера и вызывает исключение HTTPError
